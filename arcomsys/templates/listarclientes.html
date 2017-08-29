@@ -14,10 +14,11 @@
             <tbody>
                 {% for cliente in clientes %}
                 <tr>
-                    <td class="col-md-8">
+                    <td class="col-md-11">
                         {{cliente.nome}}
                     </td>
-                    <td class="col-md-2">
+                    <td class="col-md-1">
+                        <a  href="#"><span class="glyphicon glyphicon-pencil"></span></a>
                         <a  href="{% url 'deletarcliente' pk=cliente.pk%}"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
