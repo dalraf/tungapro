@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <div class="row">
     <form method="post" enctype="multipart/form-data">
-        <div class="col-md-12">
+        <div class="col-md-10">
             {% csrf_token %} {% for error in form.non_field_errors %}
             <div class="form-group has-errors text-danger small">
                 {{error}}
@@ -19,16 +19,18 @@
             </div>
             {% endfor %}
         </div>
+        <div class="col-md-2">
+            <a class="btn btn-info" role="button" href="{% url 'addclientes' %}">Adicionar Clientes</a>
+        </div>
 </div>
 <div class="row">
-    <div class="col-md-10">
-        <h3>Listagem de Clientes</h3>
+    <div class="col-md-12">
         <hr/>
         <table class="table table-bordered table-striped">
-            <thead class="thead-default" style="background-color: #e6f2ff">
+            <thead class="thead-default" style="background-color: #BEBEBE">
                 <tr>
                     <th>
-                        <h4>Nome</h4>
+                        <h4><i>Nome</i></h4>
                     </th>
                 </tr>
             </thead>
@@ -46,9 +48,6 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
-    <div class="col-md-2">
-        <a class="btn btn-info" role="button" href="{% url 'addclientes' %}">Adicionar Clientes</a>
     </div>
 </div>
 {% endblock content %}

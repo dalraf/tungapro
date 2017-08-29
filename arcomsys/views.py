@@ -9,7 +9,6 @@ from .forms import *
 
 # Create your views here.
 
-
 def listarclientes(request):
     if request.method == 'POST':
         form = filtrarcliente(request.POST)
