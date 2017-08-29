@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <div class="row">
     <div class="col-md-10">
-        <h5>Listagem de Clientes</h5>
+        <h3>Listagem de Clientes</h3>
         <table class="table table-bordered table-striped">
             <thead class="thead-default" style="background-color: #e6f2ff">
                 <tr>
@@ -14,9 +14,7 @@
                 {% for cliente in clientes %}
                 <tr>
                     <td>
-                        <a class="btn btn-info" role="button" href="">{{cliente.nome}}</a>
-                    </td>
-                    <td>
+                        {{cliente.nome}}
                         <a class="btn btn-info" role="button" href="{% url 'deletarcliente' pk=cliente.pk%}">deletar</a>
                     </td>
                 </tr>
