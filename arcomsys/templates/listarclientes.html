@@ -2,19 +2,22 @@
 <div class="row">
     <div class="col-md-10">
         <h3>Listagem de Clientes</h3>
+        <hr/>
         <table class="table table-bordered table-striped">
             <thead class="thead-default" style="background-color: #e6f2ff">
                 <tr>
                     <th>
-                        <h6>Nome</h6>
+                        <h4>Nome</h4>
                     </th>
                 </tr>
             </thead>
             <tbody>
                 {% for cliente in clientes %}
                 <tr>
-                    <td>
+                    <td class="col-md-8">
                         {{cliente.nome}}
+                    </td>
+                    <td class="col-md-2">
                         <a class="btn btn-info" role="button" href="{% url 'deletarcliente' pk=cliente.pk%}">deletar</a>
                     </td>
                 </tr>
