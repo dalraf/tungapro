@@ -1,23 +1,31 @@
 {% extends 'base.html' %} {% block content %}
 <div class="row">
-    <div class="col-md-6">
-        <h4>Clientes:</h4>
+    <div class="col-md-10">
+        <h5>Listagem de Clientes</h5>
         <table class="table table-bordered table-striped">
-            {% for cliente in clientes %}
-            <tr>
-                <td>
-                    <a class="btn btn-info" role="button" href="">{{cliente.nome}}</a>
-                </td>
-                <td>
-                    <a class="btn btn-info" role="button" href="">deletar</a>
-                </td>
-            </tr>
-            {% endfor %}
+            <thead class="thead-default" style="background-color: #e6f2ff">
+                <tr>
+                    <th>
+                        <h6>Nome</h6>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>
+                        <a class="btn btn-info" role="button" href="">{{cliente.nome}}</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-info" role="button" href="">deletar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
-    <div class="col-md-6">
-        <h4>Adcionar cliente</h4>
-        <a class="btn btn-info" role="button" href="">Upload de csv</a>
+    <div class="col-md-2">
+        <a class="btn btn-info" role="button" href="{% url 'addclientes' %}">Adicionar Clientes</a>
     </div>
 </div>
 {% endblock content %}
