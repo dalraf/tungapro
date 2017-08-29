@@ -15,7 +15,7 @@ def listarclientes(request):
         form = filtrarcliente(request.POST)
         if form.is_valid():
             filtro = form.cleaned_data['filtro']
-            clientes = Cliente.objects.filter(nome=filtro,)
+            clientes = Cliente.objects.filter(nome__contains=filtro,)
             return render(request, 'listarclientes.html', {'clientes': clientes, 'form': form })
     else:
         clientes = Cliente.objects.all()
