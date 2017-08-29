@@ -26,3 +26,8 @@ def addclientes(request):
     return render(request, 'addcliente.html', {
         'form': form
     })
+
+def deletarcliente(request, pk):
+    clientquery = Cliente.objects.filter(pk=pk,)
+    clientquery.delete()
+    return redirect('listarclientes')

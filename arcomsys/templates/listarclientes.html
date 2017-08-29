@@ -17,7 +17,7 @@
                         <a class="btn btn-info" role="button" href="">{{cliente.nome}}</a>
                     </td>
                     <td>
-                        <a class="btn btn-info" role="button" href="">deletar</a>
+                        <a class="btn btn-info" role="button" href="{% url 'deletarcliente' pk=cliente.pk%}">deletar</a>
                     </td>
                 </tr>
                 {% endfor %}
