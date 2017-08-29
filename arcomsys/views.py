@@ -11,8 +11,18 @@ from .forms import *
 
 
 def listarclientes(request):
-    clientes = Cliente.objects.all()
-    return render(request, 'listarclientes.html', {'clientes': clientes})
+    if request.method == 'POST':
+        form = filtrarcliente(request.POST)
+        if form.is_valid():
+            filtro = form.cleaned_data['filtro']
+            clientes = Cliente.objects.filter(nome=filtro,)
+            return render(request, 'listarclientes.html', {'clientes': clientes, 'form': form })
+    else:
+        clientes = Cliente.objects.all()
+        form = filtrarcliente()
+        return render(request, 'listarclientes.html', {'clientes': clientes, 'form': form })
+
+
 
 
 def addclientes(request):

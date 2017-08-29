@@ -7,3 +7,6 @@ class clienteform(forms.ModelForm):
     class Meta:
         model = Cliente
         fields = ('nome', )
+
+class filtrarcliente(forms.Form):
+    filtro = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Filtrar'}))
