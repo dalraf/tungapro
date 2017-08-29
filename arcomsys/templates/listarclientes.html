@@ -18,7 +18,7 @@
                         {{cliente.nome}}
                     </td>
                     <td class="col-md-2">
-                        <a class="btn btn-info" role="button" href="{% url 'deletarcliente' pk=cliente.pk%}">deletar</a>
+                        <a  href="{% url 'deletarcliente' pk=cliente.pk%}"><span class="glyphicon glyphicon-trash"></span></a>
                     </td>
                 </tr>
                 {% endfor %}
