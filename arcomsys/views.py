@@ -16,6 +16,13 @@ def listarclientes(request):
             filtro = formfilter.cleaned_data['filtro']
             formset = ListarClienteFormset(queryset=Cliente.objects.filter(nome__contains=filtro),)
             return render(request, 'listarclientes.html', {'formfilter': formfilter, 'formset': formset })
+        elif formfilter.is_valid() and 'Deletar' in request.POST:
+            formset = ListarClienteFormset(request.POST)
+            if formset.is_valid():
+                formset.save()
+            filtro = formfilter.cleaned_data['filtro']
+            formset = ListarClienteFormset(queryset=Cliente.objects.filter(nome__contains=filtro),)
+            return render(request, 'listarclientes.html', {'formfilter': formfilter, 'formset': formset })
         else:
             formfilter = filtrarcliente()
             formset = ListarClienteFormset()
