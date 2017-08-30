@@ -12,10 +12,15 @@ from .forms import *
 def listarclientes(request):
     if request.method == 'POST':
         formfilter = filtrarcliente(request.POST)
-        if formfilter.is_valid():
+        if formfilter.is_valid() and 'Filtrar' in request.POST:
             filtro = formfilter.cleaned_data['filtro']
             formset = ListarClienteFormset(queryset=Cliente.objects.filter(nome__contains=filtro),)
             return render(request, 'listarclientes.html', {'formfilter': formfilter, 'formset': formset })
+        else:
+            formfilter = filtrarcliente()
+            formset = ListarClienteFormset()
+            return render(request, 'listarclientes.html', {'formfilter': formfilter, 'formset': formset })
+            
     else:
         formfilter = filtrarcliente()
         formset = ListarClienteFormset()
