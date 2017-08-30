@@ -38,9 +38,12 @@
                 <tbody>
                 {% endif %}
                     <tr>
-                        {% for field in form.visible_fields %}
-                        <td>{{ field }}</td>
-                        {% endfor %}
+                        <td>
+                            {{ form.nome.value}}
+                        </td>
+                        <td>
+                            {{ form.DELETE}}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>
