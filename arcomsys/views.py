@@ -29,6 +29,7 @@ def listarclientes(request):
             formadd = addclienteform(request.POST)
             if formadd.is_valid():
                 formadd.save()
+            formadd = addclienteform()
             filtro = formfilter.cleaned_data['filtro']
             formset = ListarClienteFormset(queryset=Cliente.objects.filter(nome__contains=filtro),)
             return render(request, 'listarclientes.html', {'formadd': formadd,'formfilter': formfilter, 'formset': formset })
