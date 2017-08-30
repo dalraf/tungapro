@@ -1,12 +1,15 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
+<form method="post" enctype="multipart/form-data">
 <div class="row">
-    <form method="post" enctype="multipart/form-data">
         <div class="col-md-10">
-            {% csrf_token %} {% for error in formfilter.non_field_errors %}
+            {% csrf_token %} 
+            {% for error in formfilter.non_field_errors %}
             <div class="form-group has-errors text-danger small">
                 {{error}}
             </div>
-            {% endfor %} {% for field in formfilter %}
+            {% endfor %} 
+            {% for field in formfilter %}
             <div class="form-group has-errors text-danger small">
                 {{field.errors}}
             </div>
@@ -20,34 +23,37 @@
             {% endfor %}
         </div>
         <div class="col-md-2">
+            <button class="btn btn-info" type="submit">Filtrar</button>
             <a class="btn btn-info" role="button" href="{% url 'addclientes' %}">Adicionar Clientes</a>
         </div>
 </div>
 <div class="row">
     <hr/>
-    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %} 
+        {{ formset.management_form }}
         <div class="col-md-12">
-            <table class="table table-bordered table-striped">
-                <thead class="thead-default" style="background-color: #BEBEBE">
-                    {% for form in formset.forms %}
-                        {% for hidden in form.hidden_fields %}
-                            {{ hidden }}
-                        {% endfor %}
-                        {% if forloop.first %}
-                            {% for field in form.visible_fields %}
+                <table class="table table-bordered table-striped">
+                    {% for form in formset.forms %} 
+                        {% for hidden in form.hidden_fields %} 
+                            {{ hidden }} 
+                        {% endfor %} 
+                    <thead class="thead-default" style="background-color: #BEBEBE">
+                        {% if forloop.first %} 
+                            {%for field in form.visible_fields %}
                                 <th>{{ field.label_tag }}</th>
-                            {% endfor %}
+                            {% endfor %} 
                         {% endif %}
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                         <tr>
-                            {% for field in form.visible_fields %}
-                                <td>{{ field }}</td>
-                            {% endfor %}
+                        {% for field in form.visible_fields %}
+                            <td>{{ field }}</td>
+                        {% endfor %}
                         </tr>
+                    </tbody>    
                     {% endfor %}
-                </tbody>
-            </table
+                </table> 
         </div>
 </div>
+</form>
 {% endblock content %}

@@ -11,16 +11,15 @@ from .forms import *
 
 def listarclientes(request):
     if request.method == 'POST':
-        form = filtrarcliente(request.POST)
-        if form.is_valid():
-            filtro = form.cleaned_data['filtro']
-            clientes = Cliente.objects.filter(nome__contains=filtro,)
-            return render(request, 'listarclientes.html', {'clientes': clientes, 'form': form })
+        formfilter = filtrarcliente(request.POST)
+        if formfilter.is_valid():
+            filtro = formfilter.cleaned_data['filtro']
+            formset = ListarClienteFormset(queryset=Cliente.objects.filter(nome__contains='filtro'),)
+            return render(request, 'listarclientes.html', {'formfilter': formfilter, 'formset': formset })
     else:
-        clientes = Cliente.objects.all()
         formfilter = filtrarcliente()
         formset = ListarClienteFormset()
-        return render(request, 'listarclientes.html', {'clientes': clientes, 'formfilter': formfilter, 'formset': formset })
+        return render(request, 'listarclientes.html', {'formfilter': formfilter, 'formset': formset })
 
 
 
