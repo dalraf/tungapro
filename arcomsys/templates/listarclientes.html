@@ -28,12 +28,13 @@
         <hr/> {% csrf_token %} {{ formset.management_form }}
         <div class="col-md-12">
             <table class="table table-bordered table-striped">
-                {% for form in formset.forms %} {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %}
+                {% for form in formset.forms %} {% for hidden in form.hidden_fields %} {{ hidden }} {% endfor %} {% if forloop.first %}
                 <thead class="thead-default" style="background-color: #BEBEBE">
-                    {% if forloop.first %} {%for field in form.visible_fields %}
+                    {%for field in form.visible_fields %}
                     <th>{{ field.label_tag }}</th>
-                    {% endfor %} {% endif %}
+                    {% endfor %}
                 </thead>
+                {% endif %}
                 <tbody>
                     <tr>
                         {% for field in form.visible_fields %}
