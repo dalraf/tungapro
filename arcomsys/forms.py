@@ -2,8 +2,9 @@ from django import forms
 from .models import Cliente
 from django.forms import modelformset_factory
 
-class clienteform(forms.ModelForm):
+class addclienteform(forms.ModelForm):
     nome = forms.CharField(
+        required=False,
         widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nome'})
         )
 
