@@ -21,7 +21,7 @@ class filtrarcliente(forms.Form):
 
 ListarClienteFormset = modelformset_factory(
     Cliente, 
-    fields=('nome',),
+    fields=('nome','registro'),
 #    widgets={'nome': forms.TextInput(attrs={'readonly':'readonly','style': 'border: none'})},
     can_delete=True,
     extra=0

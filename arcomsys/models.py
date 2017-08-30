@@ -7,7 +7,7 @@ from django.db import models
 
 class Cliente(models.Model):
     nome = models.CharField("Nome",max_length=50, blank=True, null=True)
-    marcar_delecao = models.BooleanField(default=False)
+    registro = models.AutoField(primary_key=True)
     
     def __unicode__(self):
         return self.nome
