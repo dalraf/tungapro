@@ -3,7 +3,9 @@ from .models import Cliente
 from django.forms import modelformset_factory
 
 class clienteform(forms.ModelForm):
-    nome = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nome'}))
+    nome = forms.CharField(
+        widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Nome'})
+        )
 
     class Meta:
         model = Cliente
@@ -11,7 +13,16 @@ class clienteform(forms.ModelForm):
 
 
 class filtrarcliente(forms.Form):
-    filtro = forms.CharField(required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Filtrar'}))
+    filtro = forms.CharField(
+    required=False,
+    widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Filtrar'}
+    ))
 
 
-ListarClienteFormset = modelformset_factory(Cliente, fields=('nome',),can_delete=True,extra=0)
+ListarClienteFormset = modelformset_factory(
+    Cliente, 
+    fields=('nome',),
+    widgets={'nome': forms.TextInput(attrs={'readonly':'readonly','style': 'border: none'})},
+    can_delete=True,
+    extra=0
+    )
