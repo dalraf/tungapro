@@ -14,4 +14,4 @@ class filtrarcliente(forms.Form):
     filtro = forms.CharField(required=False,widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Filtrar'}))
 
 
-ListarClienteFormset = modelformset_factory(Cliente, fields=('nome',),can_delete=True)
+ListarClienteFormset = modelformset_factory(Cliente, fields=('nome',),can_delete=True,extra=0)
