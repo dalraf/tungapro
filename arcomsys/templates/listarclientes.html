@@ -2,11 +2,11 @@
 <div class="row">
     <form method="post" enctype="multipart/form-data">
         <div class="col-md-10">
-            {% csrf_token %} {% for error in form.non_field_errors %}
+            {% csrf_token %} {% for error in formfilter.non_field_errors %}
             <div class="form-group has-errors text-danger small">
                 {{error}}
             </div>
-            {% endfor %} {% for field in form %}
+            {% endfor %} {% for field in formfilter %}
             <div class="form-group has-errors text-danger small">
                 {{field.errors}}
             </div>
@@ -24,30 +24,30 @@
         </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-        <hr/>
-        <table class="table table-bordered table-striped">
-            <thead class="thead-default" style="background-color: #BEBEBE">
-                <tr>
-                    <th>
-                        <h4><i>Nome</i></h4>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for cliente in clientes %}
-                <tr>
-                    <td class="col-md-11">
-                        {{cliente.nome}}
-                    </td>
-                    <td class="col-md-1">
-                        <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a href="{% url 'deletarcliente' pk=cliente.pk%}"><span class="glyphicon glyphicon-trash"></span></a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <hr/>
+    <form method="post" enctype="multipart/form-data">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+                <thead class="thead-default" style="background-color: #BEBEBE">
+                    {% for form in formset.forms %}
+                        {% for hidden in form.hidden_fields %}
+                            {{ hidden }}
+                        {% endfor %}
+                        {% if forloop.first %}
+                            {% for field in form.visible_fields %}
+                                <th>{{ field.label_tag }}</th>
+                            {% endfor %}
+                        {% endif %}
+                </thead>
+                <tbody>
+                        <tr>
+                            {% for field in form.visible_fields %}
+                                <td>{{ field }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table
+        </div>
 </div>
 {% endblock content %}

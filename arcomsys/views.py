@@ -18,8 +18,9 @@ def listarclientes(request):
             return render(request, 'listarclientes.html', {'clientes': clientes, 'form': form })
     else:
         clientes = Cliente.objects.all()
-        form = filtrarcliente()
-        return render(request, 'listarclientes.html', {'clientes': clientes, 'form': form })
+        formfilter = filtrarcliente()
+        formset = ListarClienteFormset()
+        return render(request, 'listarclientes.html', {'clientes': clientes, 'formfilter': formfilter, 'formset': formset })
 
 
 
