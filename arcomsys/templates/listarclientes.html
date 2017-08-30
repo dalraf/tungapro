@@ -34,15 +34,15 @@
                     <th>{{ field.label_tag }}</th>
                     {% endfor %}
                 </thead>
-                {% endif %}
                 <tbody>
+                {% endif %}
                     <tr>
                         {% for field in form.visible_fields %}
                         <td>{{ field }}</td>
                         {% endfor %}
                     </tr>
-                </tbody>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
     </div>
