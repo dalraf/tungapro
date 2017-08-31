@@ -28,7 +28,8 @@ def listarclientes(request):
         elif formfilter.is_valid() and 'Adicionar' in request.POST:
             formadd = addclienteform(request.POST)
             if formadd.is_valid():
-                formadd.save()
+                if formadd.cleaned_data['nome'] != "":
+                    formadd.save()
             formadd = addclienteform()
             filtro = formfilter.cleaned_data['filtro']
             formset = ListarClienteFormset(queryset=Cliente.objects.filter(nome__contains=filtro),)
